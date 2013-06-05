@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd $(dirname $0)/../problems
+
+prepare-directory $1
+cd $1
+python ~/Documents/OnlineJudgeHelper/oj.py -d --codeforces $1 $2
+cd ../
