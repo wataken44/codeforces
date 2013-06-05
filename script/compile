@@ -1,0 +1,5 @@
+#!/bin/sh
+
+CMD="g++ -Wall $1 -o `echo $1|sed -e 's/\..*/.exe/'`"
+echo $CMD
+$CMD

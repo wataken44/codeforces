@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname $0)/../problems
+
 if [ -e $1 ]; then
         echo -n
 else

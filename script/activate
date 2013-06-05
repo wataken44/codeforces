@@ -1,4 +1,4 @@
 #!/bin/sh
 
-PATH=$PATH:`cd $(dirname $0);pwd`
+PATH=`cd $(dirname $0);pwd`:$PATH
 export PATH
