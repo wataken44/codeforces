@@ -1,5 +1,5 @@
 /*
-  <id>
+  302D
  */
 #include <algorithm>
 #include <cfloat>
@@ -11,7 +11,6 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
-#include <limits>
 #include <list>
 #include <map>
 #include <memory>
@@ -22,6 +21,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <limits>
 
 typedef int int_type;
 
@@ -58,11 +58,61 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 /*
-  <id>
+  302D
  */
+
+int dist(int x0, int y0, int x1, int y1)
+{
+  return abs(x0 - x1) + abs(y0 - y1);
+}
 
 int main(int argc, char *argv[])
 {
+  int n, d;
+  cin >> n >> d;
+
+  vector<int> a(1, 0);
+  TIMES(nn, n - 2) {
+    int aa;
+    cin >> aa;
+    a.push_back(aa);
+  }
+  a.push_back(0);
+
+  vector<int> x, y;
+  TIMES(nn, n) {
+    int xx, yy;
+    cin >> xx >> yy;
+    x.push_back(xx);
+    y.push_back(yy);
+  }
+
+  const ull MAX = numeric_limits<ull>::max() >> 2;
+
+  vector<ull> cost(n, MAX);
+  vector<int> pred(n, -1);
+  cost[0] = 0;
+
+  TIMES(o, n) {
+    TIMES(p, n) {
+      int xp = x[p];
+      int yp = y[p];
+    
+      TIMES(q, n) {
+        int xq = x[q];
+        int yq = y[q];
+
+        if(p == q) continue;
+        ull cq = cost[p] +
+            d * dist(xp, yp, xq, yq) - (a[q]);
+        if(cq < cost[q]) {
+          pred[q] = p;
+          cost[q] = cq;
+        }
+      }
+    }
+  }
+  cout << cost.back() << endl;
   
   return 0;
 }
